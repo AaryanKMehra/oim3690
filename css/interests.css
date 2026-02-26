@@ -1,0 +1,165 @@
+/* interests.css */
+
+:root {
+    --bg: #f4f7f5;
+    --text: #2d3436;
+    --muted: #636e72;
+    --accent: #4a6741; /* Sage Green */
+    --accent-light: #e8eee7;
+    --card: #ffffff;
+    --border: #dee2e6;
+    --radius: 16px;
+    --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy transition */
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body { 
+    font-family: 'Plus Jakarta Sans', sans-serif; 
+    background-color: var(--bg); 
+    color: var(--text); 
+    line-height: 1.6; 
+    display: flex;
+    min-height: 100vh;
+}
+
+h1, h2, h3, .serif {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+}
+
+/* Sidebar Navigation (Matching previous pages) */
+aside {
+    width: 300px;
+    background: var(--card);
+    padding: 50px 35px;
+    border-right: 1px solid var(--border);
+    position: fixed;
+    inset: 0 auto 0 0;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+}
+
+.brand h1 { font-size: 2.5rem; color: var(--accent); line-height: 1; }
+.brand p { font-size: 0.85rem; color: var(--muted); margin-top: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+
+nav ul { list-style: none; margin-top: 3rem; }
+nav li { margin-bottom: 12px; }
+nav a {
+    text-decoration: none;
+    color: var(--muted);
+    font-weight: 500;
+    display: block;
+    padding: 10px 15px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+nav a:hover, nav a.active { 
+    background: var(--accent-light); 
+    color: var(--accent); 
+}
+
+/* Main Content */
+main { margin-left: 300px; flex: 1; padding: 80px 60px; }
+.container { max-width: 1000px; margin: 0 auto; }
+
+header { margin-bottom: 60px; }
+.hero h2 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 15px; }
+.subtitle { font-size: 1.2rem; color: var(--muted); max-width: 700px; }
+
+/* Grid Layout for the Multiple Divs */
+.interests-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 30px; 
+}
+
+/* Standard Card Styling */
+.interest-card { 
+    background: var(--card); 
+    border: 1px solid var(--border); 
+    padding: 35px; 
+    border-radius: var(--radius);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.interest-card h3 { 
+    font-size: 1.8rem; 
+    margin-bottom: 12px; 
+    color: var(--text);
+}
+
+/* Standard Hover for all cards */
+.interest-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(74, 103, 65, 0.08);
+    border-color: var(--accent-light);
+}
+
+/* =========================================
+   SPECIAL HOVER ANIMATION (For Writing Div)
+   ========================================= */
+.special-hover-card {
+    border: 1px solid var(--accent-light);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.special-hover-card:hover {
+    transform: translateY(-12px) scale(1.03) rotateX(4deg) rotateY(-4deg);
+    box-shadow: 
+        -10px 20px 30px rgba(74, 103, 65, 0.1),
+        10px 20px 30px rgba(74, 103, 65, 0.05);
+    border-color: var(--accent);
+    background: linear-gradient(145deg, #ffffff, #fdfdfd);
+    z-index: 10;
+}
+
+/* Adding a subtle glowing sweep effect on hover to the special card */
+.special-hover-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%; width: 50%; height: 100%;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 100%);
+    transform: skewX(-25deg);
+    transition: all 0.7s ease;
+}
+
+.special-hover-card:hover::after {
+    animation: shine 1.2s ease-out forwards;
+}
+
+@keyframes shine {
+    0% { left: -100%; }
+    100% { left: 200%; }
+}
+/* ========================================= */
+
+footer { 
+    text-align: center; 
+    margin-top: 80px; 
+    padding: 30px; 
+    border-top: 1px solid var(--border); 
+    color: var(--muted); 
+    font-size: 0.85rem; 
+}
+
+.skip { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+.skip:focus { position: static; width: auto; height: auto; background: var(--accent); color: #fff; padding: 10px; z-index: 1000;}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    aside { width: 100%; position: relative; height: auto; padding: 30px; border-right: none; border-bottom: 1px solid var(--border); }
+    main { margin-left: 0; padding: 40px 25px; }
+    .hero h2 { font-size: 2.8rem; }
+    .interests-grid { grid-template-columns: 1fr; }
+}
