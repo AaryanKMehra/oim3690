@@ -9,7 +9,7 @@
     --card: #ffffff;
     --border: #dee2e6;
     --radius: 16px;
-    --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy transition */
+    --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -29,7 +29,7 @@ h1, h2, h3, .serif {
     font-weight: 400;
 }
 
-/* Sidebar Navigation (Matching previous pages) */
+/* Sidebar Navigation */
 aside {
     width: 300px;
     background: var(--card);
@@ -56,9 +56,13 @@ nav a {
     border-radius: 10px;
     transition: all 0.3s ease;
 }
-nav a:hover, nav a.active { 
+nav a:hover { 
     background: var(--accent-light); 
     color: var(--accent); 
+}
+nav a.active {
+    background: var(--accent-light);
+    color: var(--accent);
 }
 
 /* Main Content */
@@ -69,7 +73,7 @@ header { margin-bottom: 60px; }
 .hero h2 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 15px; }
 .subtitle { font-size: 1.2rem; color: var(--muted); max-width: 700px; }
 
-/* Grid Layout for the Multiple Divs */
+/* Grid Layout */
 .interests-grid { 
     display: grid; 
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
@@ -90,6 +94,7 @@ header { margin-bottom: 60px; }
 .card-icon {
     font-size: 2.5rem;
     margin-bottom: 20px;
+    display: inline-block;
 }
 
 .interest-card h3 { 
@@ -98,16 +103,18 @@ header { margin-bottom: 60px; }
     color: var(--text);
 }
 
-/* Standard Hover for all cards */
+.interest-card p {
+    font-size: 1rem;
+    color: var(--muted);
+}
+
 .interest-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 15px 35px rgba(74, 103, 65, 0.08);
     border-color: var(--accent-light);
 }
 
-/* =========================================
-   SPECIAL HOVER ANIMATION (For Writing Div)
-   ========================================= */
+/* Special Hover Animation for Writing Div */
 .special-hover-card {
     border: 1px solid var(--accent-light);
     transform-style: preserve-3d;
@@ -124,7 +131,7 @@ header { margin-bottom: 60px; }
     z-index: 10;
 }
 
-/* Adding a subtle glowing sweep effect on hover to the special card */
+/* Sweeping light effect for the special hover */
 .special-hover-card::after {
     content: '';
     position: absolute;
@@ -142,7 +149,6 @@ header { margin-bottom: 60px; }
     0% { left: -100%; }
     100% { left: 200%; }
 }
-/* ========================================= */
 
 footer { 
     text-align: center; 
@@ -156,7 +162,6 @@ footer {
 .skip { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
 .skip:focus { position: static; width: auto; height: auto; background: var(--accent); color: #fff; padding: 10px; z-index: 1000;}
 
-/* Responsive Design */
 @media (max-width: 900px) {
     aside { width: 100%; position: relative; height: auto; padding: 30px; border-right: none; border-bottom: 1px solid var(--border); }
     main { margin-left: 0; padding: 40px 25px; }
