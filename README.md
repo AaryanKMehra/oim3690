@@ -7,4 +7,9 @@ This is my course repository for OIM3690
 
 ## Links
 
+## Porjects
+
+- Personal Website (https://AaryanKMehra.github.io)
+- [Mini Project 1 - Company Website - (https://example.github.io)]
+
 
