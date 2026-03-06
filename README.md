@@ -10,6 +10,6 @@ This is my course repository for OIM3690
 ## Porjects
 
 - Personal Website (https://AaryanKMehra.github.io)
-- [Mini Project 1 - Company Website - (https://example.github.io)]
+- [Mini Project 1 - Company Website - (https://AaryanKMehra.github.io/RRHastkala/)]
 
 
