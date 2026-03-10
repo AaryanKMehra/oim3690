@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Totally Normal Website</title>
+    <link rel="stylesheet" href="css/playground.css">
+</head>
+<body>
+
+    <div id="video-container">
+        <iframe id="rickroll" width="560" height="315" src="https://www.youtube.com/watch?v=dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <h2 style="color: white; text-align: center; font-family: sans-serif;">Got 'em!</h2>
+    </div>
+
+    <div id="particles"></div>
+
+    <script>
+        // Fun labels for the useless buttons
+        const buttonTexts = ["Click Me!", "Do Nothing", "I'm Useless", "Ooh, shiny!", "Don't click", "Catch me!", "Push it"];
+        
+        function spawnButton() {
+            const btn = document.createElement('button');
+            btn.className = 'random-btn';
+            btn.innerText = buttonTexts[Math.floor(Math.random() * buttonTexts.length)];
+            
+            // Calculate random positions, keeping buttons within the window
+            const maxX = window.innerWidth - 150;
+            const maxY = window.innerHeight - 50;
+            btn.style.left = `${Math.random() * maxX}px`;
+            btn.style.top = `${Math.random() * maxY}px`;
+            
+            // INCREASED ODDS: Now there is a 40% chance to trigger the Rickroll!
+            const isRickRoll = Math.random() < 0.40;
+            
+            btn.onclick = () => {
+                if (isRickRoll) {
+                    // Reveal the trap
+                    const videoContainer = document.getElementById('video-container');
+                    const iframe = document.getElementById('rickroll');
+                    videoContainer.style.display = 'block';
+                    
+                    // FIXED VIDEO: Re-assign the entire link with autoplay turned on
+                    iframe.src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"; 
+                    
+                    // Stop spawning new buttons once they are caught
+                    clearInterval(spawner);
+                } else {
+                    // The button does nothing but disappear
+                    btn.remove(); 
+                }
+            };
+            
+            document.body.appendChild(btn);
+            
+            // Buttons disappear automatically after 2-4 seconds
+            setTimeout(() => {
+                if(btn.parentNode) btn.remove();
+            }, 2000 + Math.random() * 2000);
+        }
+
+        // Spawn a new button every 400 milliseconds
+        const spawner = setInterval(spawnButton, 400);
+
+        // Function to spawn floating particles
+        function spawnParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            const size = 5 + Math.random() * 15; // Random size between 5-20px
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.background = `hsl(${Math.random() * 360}, 100%, 70%)`; // Random color
+            particle.style.animationDelay = Math.random() * 10 + 's'; // Random delay
+            document.getElementById('particles').appendChild(particle);
+            
+            // Remove particle after animation
+            setTimeout(() => {
+                if (particle.parentNode) particle.remove();
+            }, 10000);
+        }
+
+        // Spawn a new particle every 300 milliseconds
+        setInterval(spawnParticle, 300);
+    </script>
+</body>
+</html>

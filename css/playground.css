@@ -1,0 +1,80 @@
+/* The funky, shifting animated background */
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevents scrollbars from spawning buttons */
+    background: linear-gradient(45deg, #ff0055, #3300ff, #00ffcc, #ffcc00);
+    background-size: 400% 400%;
+    animation: gradientShift 8s ease infinite;
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* Maximum chaos */
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* The cool, popping buttons */
+.random-btn {
+    position: absolute;
+    padding: 15px 25px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    background-color: #222;
+    border: 3px solid #fff;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    transition: transform 0.1s, background-color 0.2s;
+    animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.random-btn:hover {
+    transform: scale(1.2) rotate(-10deg);
+    background-color: #ff00cc;
+}
+
+@keyframes popIn {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Styling for the hidden video container */
+#video-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 50px #00ffcc;
+    display: none; /* Hidden until the wrong button is clicked */
+}
+
+/* Floating particles background */
+#particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    animation: float 10s linear infinite;
+    opacity: 0.7;
+}
+
+@keyframes float {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+}
