@@ -11,5 +11,6 @@ This is my course repository for OIM3690
 
 - Personal Website (https://AaryanKMehra.github.io)
 - [Mini Project 1 - Company Website - (https://AaryanKMehra.github.io/RRHastkala/)]
+- [Mini Project 2 - (https://AaryanKMehra.hithub.io/Screenplay-Prompt-Generator)]
 
 
