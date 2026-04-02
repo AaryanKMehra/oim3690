@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Array Learning Lab</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 40px; line-height: 1.6; }
+        .container { max-width: 400px; background: #f4f4f9; padding: 20px; border-radius: 8px; }
+        input { padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
+        button { padding: 8px 12px; cursor: pointer; background-color: #2ecc71; color: white; border: none; border-radius: 4px; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Shopping List</h2>
+        
+        <input type="text" id="itemInput" placeholder="Enter item...">
+        <button id="addBtn">Add Item</button>
+
+        <ul id="displayList"></ul>
+    </div>
+
+    <script>
+        // --- 1. THE DATA (The Array) ---
+        // This is your 'Source of Truth'. 
+        // Index 0: 'Milk', Index 1: 'Eggs', Index 2: 'Bread'
+        const items = ['Milk', 'Eggs', 'Bread'];
+
+        const listUI = document.getElementById('displayList');
+        const inputUI = document.getElementById('itemInput');
+        const buttonUI = document.getElementById('addBtn');
+
+        // --- 2. THE RENDERER ---
+        // This function translates the Array into HTML
+        function updateDisplay() {
+            // Step A: Wipe the old HTML list clean
+            listUI.innerHTML = '';
+
+            // Step B: Loop through the current state of the array
+            // .forEach is a cleaner way to loop through arrays!
+            items.forEach(function(thing) {
+                const li = document.createElement('li');
+                li.textContent = thing; // 'thing' represents the current array item
+                listUI.appendChild(li);
+            });
+        }
+
+        // --- 3. THE UPDATER ---
+        buttonUI.addEventListener('click', function() {
+            const val = inputUI.value;
+
+            if (val.trim() !== "") {
+                // Change the Data: Push the new string into the Array
+                items.push(val); 
+
+                // Reset the Input box
+                inputUI.value = "";
+
+                // Update the UI: Re-run the loop with the new array data
+                updateDisplay();
+            }
+        });
+
+        // Run once on page load to show the initial 3 items
+        updateDisplay();
+    </script>
+</body>
+</html>
