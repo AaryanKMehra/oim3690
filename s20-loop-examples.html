@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Counting Items</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f4f4f5;
+    }
+
+    .counter-card {
+      background: white;
+      padding: 32px 48px;
+      border-radius: 12px;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      text-align: center;
+      max-width: 400px;
+    }
+
+    h2 {
+      margin: 0 0 16px 0;
+      color: #18181b;
+    }
+
+    .data-display {
+      background-color: #f3f4f6;
+      padding: 16px;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 1.1rem;
+      color: #4b5563;
+      margin-bottom: 24px;
+      letter-spacing: 2px;
+    }
+
+    .result {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #2563eb; /* Bright blue for emphasis */
+      background-color: #eff6ff; /* Very light blue background */
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid #bfdbfe;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="counter-card">
+    <h2>Grade Counter</h2>
+    <div id="data-display" class="data-display"></div>
+    <div id="result" class="result"></div>
+  </div>
+
+  <script>
+    // 1. The original array of grades
+    const grades = ['A', 'B', 'A', 'C', 'A', 'B'];
+    
+    // 2. Initialize the counter at zero
+    let countA = 0;
+
+    // 3. The Loop + Conditional Logic
+    for (let i = 0; i < grades.length; i++) {
+      if (grades[i] === 'A') {
+        countA++; // This means countA = countA + 1
+      }
+    }
+
+    // 4. Render the results to the HTML instead of the console
+    const displayElement = document.querySelector('#data-display');
+    const resultElement = document.querySelector('#result');
+
+    // Show the array visually
+    displayElement.textContent = `[ ${grades.join(', ')} ]`;
+    
+    // Show the final count
+    resultElement.textContent = `Number of As: ${countA}`;
+  </script>
+
+</body>
+</html>

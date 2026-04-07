@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loop Challenges</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #f4f4f5;
+      color: #18181b;
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+    }
+    .container {
+      background: white;
+      padding: 32px 48px;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      width: 100%;
+    }
+    h1 { margin-top: 0; font-size: 1.5rem; border-bottom: 2px solid #e4e4e7; padding-bottom: 12px; }
+    h2 { font-size: 1.1rem; color: #3f3f46; margin-top: 24px; margin-bottom: 8px; }
+    ul { background: #f3f4f6; padding: 16px 16px 16px 40px; border-radius: 8px; }
+    .result-box {
+      background: #eff6ff;
+      color: #1d4ed8;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Loop Challenges Results</h1>
+
+    <h2>1. The Array List</h2>
+    <ul id="number-list"></ul>
+
+    <h2>2. Sum of all numbers</h2>
+    <div id="sum-result" class="result-box"></div>
+
+    <h2>3. Maximum value</h2>
+    <div id="max-result" class="result-box"></div>
+
+    <h2>4. Count of positive numbers</h2>
+    <div id="positive-result" class="result-box"></div>
+
+    <h2>5. Array of even numbers</h2>
+    <div id="evens-result" class="result-box"></div>
+  </div>
+
+  <script>
+    const numbers = [4, -8, 15, -16, 23, 42, -3];
+
+    // Challenge 1: Build a list
+    const ul = document.querySelector('#number-list');
+    for (let i = 0; i < numbers.length; i++) {
+      const li = document.createElement('li');
+      li.textContent = numbers[i];
+      ul.appendChild(li);
+    }
+
+    // Challenge 2: Sum it up
+    let sum = 0;
+    for (let i = 0; i < numbers.length; i++) {
+      sum += numbers[i];
+    }
+    document.querySelector('#sum-result').textContent = sum;
+
+    // Challenge 3: Find the max (without Math.max)
+    // We start by assuming the first number is the maximum
+    let max = numbers[0];
+    for (let i = 1; i < numbers.length; i++) {
+      if (numbers[i] > max) {
+        max = numbers[i]; // Update max if we find a bigger number
+      }
+    }
+    document.querySelector('#max-result').textContent = max;
+
+    // Challenge 4: Count positives
+    let positiveCount = 0;
+    for (let i = 0; i < numbers.length; i++) {
+      if (numbers[i] > 0) {
+        positiveCount++;
+      }
+    }
+    document.querySelector('#positive-result').textContent = positiveCount;
+
+    // Challenge 5: Find evens
+    const evensArray = [];
+    for (let i = 0; i < numbers.length; i++) {
+      // The modulo operator (%) checks for remainders. If dividing by 2 leaves 0, it's even.
+      if (numbers[i] % 2 === 0) {
+        evensArray.push(numbers[i]);
+      }
+    }
+    // We use .join(', ') to turn the array into a nice readable string for the page
+    document.querySelector('#evens-result').textContent = `[ ${evensArray.join(', ')} ]`;
+
+  </script>
+</body>
+</html>

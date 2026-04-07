@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data to Cards</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 24px;
+      background-color: #f4f4f5;
+    }
+
+    /* A container to hold the cards side-by-side */
+    #student-list {
+      display: flex;
+      gap: 16px;
+    }
+
+    /* Basic styling to make the divs look like cards */
+    .card {
+      background: white;
+      padding: 16px 24px;
+      border-radius: 8px;
+      border: 1px solid #e4e4e7;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="student-list"></div>
+
+  <script>
+    // 1. The Data
+    const students = [
+      { name: 'Alice', grade: 'A' },
+      { name: 'Bob', grade: 'B' },
+      { name: 'Charlie', grade: 'C' }
+    ];
+
+    // 2. Select the container
+    const list = document.querySelector('#student-list');
+
+    // 3. Loop through the data and generate elements
+    for (let i = 0; i < students.length; i++) {
+      const card = document.createElement('div');
+      
+      // I added a class name here so the CSS above can style it
+      card.className = 'card'; 
+      
+      card.textContent = `${students[i].name}: ${students[i].grade}`;
+      list.appendChild(card);
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Filtering and Rendering</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f4f4f5;
+    }
+
+    .results-card {
+      background: white;
+      padding: 32px;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 300px;
+    }
+
+    .results-card h2 {
+      margin: 0 0 16px 0;
+      color: #18181b;
+      font-size: 1.25rem;
+      border-bottom: 2px solid #e4e4e7;
+      padding-bottom: 8px;
+    }
+
+    /* Style the list to look clean */
+    #passing {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    #passing li {
+      padding: 12px;
+      margin-bottom: 8px;
+      background-color: #ecfdf5; /* Light green background */
+      color: #065f46; /* Dark green text */
+      border-radius: 6px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+    }
+
+    /* Adding a little checkmark using CSS before each item */
+    #passing li::before {
+      content: '✓';
+      margin-right: 12px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="results-card">
+    <h2>Passing Scores (>= 60)</h2>
+    
+    <ul id="passing"></ul>
+  </div>
+
+  <script>
+    // 1. The original array of scores
+    const scores = [88, 72, 95, 63, 45, 81, 56, 90];
+    
+    // 2. Select the empty <ul> element
+    const passList = document.querySelector('#passing');
+
+    // 3. Loop through every score
+    for (let i = 0; i < scores.length; i++) {
+      
+      // 4. The Filter: Only proceed if the score is 60 or higher
+      if (scores[i] >= 60) {
+        
+        // 5. The Render: Create an <li>, add the score, and attach it to the <ul>
+        const li = document.createElement('li');
+        li.textContent = scores[i];
+        passList.appendChild(li);
+      }
+    }
+  </script>
+
+</body>
+</html>
