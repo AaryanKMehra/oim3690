@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+  <input type="text" id="myMessage" value="Hello from Aaryan!">
+  <button onclick="sendData()">Post Message</button>
+  
+  <div id="results"></div>
+
+  <script>
+    async function sendData() {
+      // Get the text from the input box
+      const text = document.getElementById('myMessage').value;
+      const resultsContainer = document.getElementById('results');
+      
+      try {
+        const response = await fetch('https://oim.108122.xyz/message', {
+          method: 'POST',
+          headers: {
+            // ADDED THIS LINE BACK IN:
+            'Content-Type': 'application/json',
+            'X-Token': 'aaryanaaryan' 
+          },
+          // CHANGED THIS LINE: Now it uses the 'text' variable from the input box
+          body: JSON.stringify({ message: text }) 
+        });
+        
+        const result = await response.json();
+        
+        // Write the result to the webpage
+        if (response.ok) {
+            resultsContainer.innerHTML = `<p style="color: green;">Success! Server says: ${JSON.stringify(result)}</p>`;
+        } else {
+            resultsContainer.innerHTML = `<p style="color: red;">Failed! Error ${response.status}: ${JSON.stringify(result)}</p>`;
+        }
+        
+      } catch (error) {
+        resultsContainer.innerHTML = "<p>Error: Could not post the message.</p>";
+      }
+    }
+  </script>
+
+</body>
+</html>

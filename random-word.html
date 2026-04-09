@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+  <button onclick="getWord()">Get Random Word</button>
+  
+  <div id="results"></div>
+
+  <script>
+    async function getWord() {
+      const resultsContainer = document.getElementById('results');
+      
+      // Add a "loading..." message while waiting
+      resultsContainer.innerHTML = "loading...";
+      
+      // Handle errors with try/catch
+      try {
+        // Fetch a word from the API
+        const response = await fetch('https://oim.108122.xyz/words/random');
+        const data = await response.json();
+        
+        // Display the word on the page. 
+        // (Assuming the API returns something like {"word": "apple"}, we use data.word. 
+        // If it just returns the word directly, it will print the raw data.)
+        resultsContainer.innerHTML = `<p>${data.word || data}</p>`;
+        
+      } catch (error) {
+        resultsContainer.innerHTML = "<p>Error: Could not fetch a word.</p>";
+      }
+    }
+  </script>
+
+</body>
+</html>
