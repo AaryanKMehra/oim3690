@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Page</title>
+</head>
+<body>
+    
+    <button onclick="fetchStory()">Ask AI</button>
+    <div id="aiOutput" style="white-space: pre-wrap; margin-top: 1rem;"></div>
+    <script src="js/config.js"></script>
+    <script>
+      async function askAI(prompt) {
+        const response = await fetch('https://api.openai.com/v1/responses', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${OPENAI_API_KEY}`
+          },
+          body: JSON.stringify({
+            model: 'gpt-4o-mini',
+            input: prompt
+          })
+        });
+
+        const data = await response.json();
+        if (!response.ok) {
+          throw new Error(data.error?.message || 'OpenAI request failed');
+        }
+        return data.output_text || data.output?.[0]?.content?.[0]?.text || JSON.stringify(data);
+      }
+
+      async function fetchStory() {
+        const output = document.getElementById('aiOutput');
+        output.textContent = 'Loading...';
+        try {
+          const story = await askAI('Write a one-sentence bedtime story about a unicorn.');
+          output.textContent = story;
+        } catch (error) {
+          output.textContent = 'Error: ' + error.message;
+        }
+      }
+    </script>
+</body>
+</html>
