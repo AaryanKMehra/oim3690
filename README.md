@@ -10,7 +10,16 @@ This is my course repository for OIM3690
 ## Porjects
 
 - Personal Website (https://AaryanKMehra.github.io)
-- [Mini Project 1 - Company Website - (https://AaryanKMehra.github.io/RRHastkala/)]
+  
+- [Mini Project 1 - (https://AaryanKMehra.github.io/RRHastkala/)]
+  
 - [Mini Project 2 - (https://AaryanKMehra.github.io/Screenplay-Prompt-Generator)]
+  
 - [Mini Project 3 - (https://aaryankmehra.github.io/TravelHelper/)]
+  
+- [Final Project - (https://aaryankmehra.github.io/TheBacksgtageProject/)]
+  
+- [Elective Project 1 - (https://aaryankmehra.github.io/NewWordle/)]
+  
+- [Elective Project 2 - ()]
 
